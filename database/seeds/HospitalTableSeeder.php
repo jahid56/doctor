@@ -34,7 +34,7 @@ class HospitalTableSeeder extends Seeder
                 'name'                 => 'Shaheed Suhrawardy Medical College',
                 'division_id' => '1',
                 'district_id' => '1',
-                'category_id' => '1',	 
+                'category_id' => '2',	 
                 'address'         	   => 'Sher - e - Bengali Nagar , dhakah 1207',
                 'ownership'            => 'Government',
                 'activities'           => '2004',

@@ -44,9 +44,9 @@
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->
-              <li class="user-footer">
+              <li class="user-footer" <?php if($active == 'profile') {echo 'class="active"';} ?>>
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{!! URL::route('profile') !!}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
@@ -86,14 +86,14 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active">
-          <a href="index.html">
+        <li <?php if($active == 'dashboard') {echo 'class="active"';} ?>>
+          <a href="{!! URL::route('admin') !!}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
           
         </li>
      
-        <li >
+        <li <?php if($active == 'profile') {echo 'class="active"';} ?>>
           <a href="{!! URL::route('profile') !!}">
             <i class="fa fa-user"></i> <span>Profile</span>
           </a>
@@ -108,8 +108,8 @@
             <i class="fa fa-user-md"></i> <span>Appointment List</span>
           </a>
         </li>
-        <li>
-          <a href="#">
+        <li <?php if($active == 'mail') {echo 'class="active"';} ?>>
+          <a href="{!! URL::route('mail') !!}">
             <i class="fa fa-envelope"></i> <span>Mailbox</span>
           </a>
         </li>

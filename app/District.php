@@ -20,7 +20,7 @@ class District extends Model
 
     public function category()
     {
-        return $this->hasmany('App\Categories');
+        return $this->hasmany('App\Category');
     }
     public function dcategory()
     {

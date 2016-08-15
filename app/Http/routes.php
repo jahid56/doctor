@@ -69,11 +69,55 @@ Route::get('password/reset/{token}', [
 
 // Route::get('admin', ['middleware' => 'admin', 'uses' => 'AdminController@index']);
 
-Route::get('/home', ['middleware' => 'auth',
+Route::group([
+    'middleware' => 'auth'
+    ], function() {
+
+
+        Route::get('/home', [
         'as' => 'admin',
         'uses' => 'AdminController@index'
     ]);
-Route::get('/profile', array('as' =>'profile' ,'uses' => 'ProfileController@index'));
+
+        Route::get('/profile/{id}', array('as' =>'profile' ,'uses' => 'ProfileController@index'));
+        //Route::get('/update', array('as' =>'update' ,'uses' => 'ProfileController@postUpdate'));
+
+        Route::get('/profile/{profile_id}/edit', [
+                    'uses' => 'ProfileController@getUpdate',
+                    'as' => 'edit'
+            ]);
+
+        Route::post('profile/update', [
+                    'uses' => 'ProfileController@postUpdate',
+                    'as' => 'update'
+            ]);
+
+    //     Route::get('/profile/{profile_id}',[
+    //     'as' => 'profile',
+    //     'uses' => 'ProfileController@index'
+    // ]);
+
+        Route::get('/mail',[
+        'as' => 'mail',
+        'uses' => 'MailController@index'
+    ]);
+
+    });
+// Route::get('/home', ['middleware' => 'auth',
+//         'as' => 'admin',
+//         'uses' => 'AdminController@index'
+//     ]);
+
+// Route::get('/profile', ['middleware' => 'auth',
+//         'as' => 'profile',
+//         'uses' => 'ProfileController@index'
+//     ]);
+
+
+// Route::get('/profile/post/{post_id}&{end}', [
+//             'uses' => 'ProfileController@getProfile',
+//             'as' => 'admin.profile'
+//     ]);
 
 // // blog
 //         Route::resource('profile', 'ProfileController', array('before' => 'hasAccess:profile'));

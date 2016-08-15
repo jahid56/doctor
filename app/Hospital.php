@@ -11,6 +11,7 @@ class Hospital extends Model
 		'name',
         'division_id',
         'district_id',
+        'category_id',
     ];
 
     public function district()
@@ -22,5 +23,10 @@ class Hospital extends Model
     {
 
         return $this->belongsto('App\Division');
+    }
+    public function category()
+    {
+
+        return $this->belongsto('App\Category');
     }
 }

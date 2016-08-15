@@ -6,32 +6,17 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Auth;
 
-class AdminController extends Controller
+class MailController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
-
-
-
     public function index()
     {
-
-        /*$chartData = $logger->getLogPercent();*/
-
-        // $chartData = array();
-
-        $profile = Auth::user();
-        // if(!$profile) {
-        //     return redirect()->route('logout')->with(['fail' => 'Profile Not Found']);
-        // }
-        return view('admin.pages.main', compact('profile'));
+        return view('admin.mailbox.mail');
     }
 
     /**

@@ -112,12 +112,9 @@ class UserController extends Controller
     {
         $divisions = Division::all();
          $division=Division::find($id); 
-
+         
          $district=District::find($id); 
-
-         $categories=Category::all();
          $category=Category::find($id);
-         $hospitals=Hospital::all();
          $hospital=Hospital::find($id);
         
         // $districts=District::where('division_id', '=', $divisions->id)->get();
@@ -130,9 +127,7 @@ class UserController extends Controller
                     ->with('divisions',  $divisions)
                     ->with('division', $division)
                     ->with('district', $district)
-                    ->with('categories',$categories)
                     ->with('category',$category)
-                    ->with('hospitals',$hospitals)
                     ->with('hospital',$hospital);
     }
     

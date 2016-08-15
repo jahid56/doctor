@@ -1,3 +1,4 @@
+<?php $active="profile"; ?>
 @extends('admin.dashboard')
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -9,7 +10,6 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
         <li class="active">User profile</li>
       </ol>
     </section>
@@ -25,7 +25,7 @@
             <div class="box-body box-profile">
               <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
 
-              <h3 class="profile-username text-center">Nina Mcintire</h3>
+              <h3 class="profile-username text-center">{{ $doctor->name }}</h3>
 
               <p class="text-muted text-center">Software Engineer</p>
 
@@ -54,7 +54,7 @@
               <li class="active"><a href="#activity" data-toggle="tab">Personal</a></li>
               <li><a href="#timeline" data-toggle="tab">Education</a></li>
               <li><a href="#settings" data-toggle="tab">Employment</a></li>
-              <li><button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Update</button></li>
+              <li><a href="{{ route('edit') }}">Update</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
@@ -62,7 +62,7 @@
                 <div class="post">
                   <div class="user-block">
                         <span class="username">
-                          <p>Name : </p>
+                          <p>Name : &nbsp {{ $doctor->name }}</p>
                         </span>
                     
                   </div>
@@ -73,7 +73,7 @@
                 <div class="post clearfix">
                   <div class="user-block">
                         <span class="username">
-                          <p>Father's Name : </p>
+                          <p>Username : &nbsp {{ $profile->username }}</p>
                         </span>
                   </div>
                 </div>
@@ -83,7 +83,7 @@
                 <div class="post clearfix">
                   <div class="user-block">
                         <span class="username">
-                          <p>Address : </p>
+                          <p>Email : &nbsp {{ $profile->email }}</p>
                         </span>
                   </div>
                 </div>
@@ -93,17 +93,7 @@
                 <div class="post clearfix">
                   <div class="user-block">
                         <span class="username">
-                          <p>Email : </p>
-                        </span>
-                  </div>
-                </div>
-                <!-- /.post -->
-
-                <!-- Post -->
-                <div class="post clearfix">
-                  <div class="user-block">
-                        <span class="username">
-                          <p>Mobile No : </p>
+                          <p>Mobile No : &nbsp {{ $doctor->phone }}</p>
                         </span>
                   </div>
                 </div>
@@ -120,7 +110,7 @@
 
                       <div class="timeline-body">
                             <span class="username">
-                              <p>Institute Name : </p>
+                              <p>Institute Name : &nbsp {{ $doctor->institute }}</p>
                             </span>
                       </div>
                     </div>
@@ -132,7 +122,7 @@
 
                       <div class="timeline-body">
                             <span class="username">
-                              <p>Degree : </p>
+                              <p>Degree : &nbsp {{ $doctor->education }}</p>
                             </span>
                       </div>
                     </div>
@@ -144,19 +134,7 @@
 
                       <div class="timeline-body">
                             <span class="username">
-                              <p>Specialty : </p>
-                            </span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-
-                    <div class="timeline-item">
-
-                      <div class="timeline-body">
-                            <span class="username">
-                              <p>Year Of Passing : </p>
+                              <p>Specialty : &nbsp {{ $profile->specialty }}</p>
                             </span>
                       </div>
                     </div>
@@ -172,7 +150,7 @@
                 <div class="post">
                   <div class="user-block">
                         <span class="username">
-                          <p>Hospital Name : </p>
+                          <p>Hospital Name : &nbsp {{$doctor->hospital }}</p>
                         </span>
                     
                   </div>
@@ -181,7 +159,15 @@
                 <div class="post">
                   <div class="user-block">
                         <span class="username">
-                          <p>Time : </p>
+                          <p>Visiting Time : &nbsp {{ $doctor->time }}</p>
+                        </span>
+                    
+                  </div>
+                </div>
+                <div class="post">
+                  <div class="user-block">
+                        <span class="username">
+                          <p>Fee : &nbsp {{ $doctor->fee }}</p>
                         </span>
                     
                   </div>

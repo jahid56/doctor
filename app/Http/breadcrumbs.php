@@ -100,6 +100,17 @@ Breadcrumbs::register('profile', function($breadcrumbs)
     $breadcrumbs->parent('admin');
     $breadcrumbs->push('Profile', route('profile'));
 });
+Breadcrumbs::register('edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('profile');
+    $breadcrumbs->push('edit', route('edit'));
+});
+
+Breadcrumbs::register('mail', function($breadcrumbs)
+{
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Mail', route('mail'));
+});
 
 
 Breadcrumbs::register('category', function($breadcrumbs, $category)

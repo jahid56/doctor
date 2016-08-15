@@ -1,3 +1,4 @@
+<?php $active="mail"; ?>
 @extends('admin.dashboard')
 @section('content')<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

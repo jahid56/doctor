@@ -18,10 +18,14 @@ class CreateDoctorsTable extends Migration
             $table->integer('division_id');
             $table->integer('dcategory_id');
             $table->integer('district_id');
+            $table->string('institute');
             $table->string('education');
+            $table->string('specialty');
             $table->string('hospital');
             $table->integer('fee');
             $table->integer('phone');
+            $table->string('time');
+            $table->binary('pic');
             $table->timestamps();
         });
 
