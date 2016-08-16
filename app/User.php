@@ -41,4 +41,7 @@ class User extends Model implements AuthenticatableContract,
     public function doctor(){
         return $this->hasOne('App\Doctor');
      }
+     public function photo(){
+        return $this->hasOne('App\Photo');
+     }
 }

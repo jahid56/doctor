@@ -13,9 +13,9 @@
                  <div class="col-md-12">
                     <div class="blog-item">
                         <div class="row">
-                        @foreach($district->doctor as $doctor)        
+                        @foreach($doctors as $doctor)        
                             <div class="col-xs-12 col-sm-4 blog-content">
-                                <a href="#"><img class="img-responsive img-blog" src="images/doctor.jpg" width="100%" alt="" /></a>
+                                <a href="#"><img class="img-responsive img-blog"  src="{{ asset('uploads/logo/' . $photo->image) }}" width="100" height="100" alt="" /></a>
                             </div>
                             
                                 <div class="col-xs-12 col-sm-6 blog-content">
@@ -43,13 +43,13 @@
 
                     </div><!--/.blog-item-->
                         
-                    <ul class="pagination pagination-lg">
-                        <li><a href="#"><i class="fa fa-long-arrow-left"></i>Previous Page</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">Next Page<i class="fa fa-long-arrow-right"></i></a></li>
-                    </ul><!--/.pagination-->
+                    @if($doctors->lastPage() > 1)
+                    
+                        <ul class="pagination pagination-lg">
+                        {!! $doctors->render() !!}
+                            
+                        </ul><!--/.pagination-->
+                    @endif
                 </div><!--/.col-md-8-->
 
             </div><!--/.row-->

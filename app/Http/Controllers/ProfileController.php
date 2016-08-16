@@ -17,6 +17,7 @@ use App\Division;
 use App\District;
 use App\Dcategory;
 use App\Doctor;
+use App\Photo;
 use DB;
 use Auth;
 class ProfileController extends Controller
@@ -33,6 +34,7 @@ class ProfileController extends Controller
         $profile = Auth::user();
         // $profile = User::find($profile_id);
         $doctor=Doctor::find($id);
+        $photo = Photo::find($id);
 
         // if(!$profile) {
         //     return redirect()->route('logout')->with(['fail' => 'Profile Not Found']);
@@ -42,7 +44,8 @@ class ProfileController extends Controller
         return view('admin.article.index')
         ->with('divisions',$divisions)
         ->with('profile',$profile)
-        ->with('doctor',$doctor);
+        ->with('doctor',$doctor)
+        ->with('photo',$photo);
     }
     }
 
@@ -59,6 +62,8 @@ class ProfileController extends Controller
 
         $profile = Auth::user();
         $doctor=Doctor::find($id);
+        $photo = Photo::find($id);
+
 
         // $post = Post::find($post_id);
         // if(!$post) {
@@ -69,7 +74,8 @@ class ProfileController extends Controller
         ->with('districts',$districts)
         ->with('dcategories',$dcategories)
         ->with('profile',$profile)
-        ->with('doctor',$doctor);
+        ->with('doctor',$doctor)
+        ->with('photo',$photo);
     }
 
     public function postUpdate(Request $request ) {
@@ -85,8 +91,8 @@ class ProfileController extends Controller
             'specialty' => '',
             'hospital' => '',
             'time' => '',
-            'phone' => ''
-
+            'phone' => '',
+            'image' =>''            
             ]);
 
         $doctor = Doctor::find($request['id']);
@@ -102,6 +108,16 @@ class ProfileController extends Controller
         $doctor->time = $request['time'];
         $doctor->fee = $request['fee'];
 
+        $photo = Photo::find($request['id']);
+        $logo=$request->file('image');
+        $upload='uploads/logo';
+        $filename=$logo->getClientOriginalName();
+        $success=$logo->move($upload,$filename);
+        if($success) {
+            $photo->image = $filename;
+            $photo->update();
+        }
+        
         // $file = Input::file('pic');
         // $img = Image::make($request->file('pic')->getRealPath());
         // //$img = Image::make($file);
@@ -109,6 +125,7 @@ class ProfileController extends Controller
 
         // $doctor->pic = $img;
         $doctor->update();
+        
 
         return redirect()->route('profile')->with(['success' => 'Profile Successfully Updated']);
    

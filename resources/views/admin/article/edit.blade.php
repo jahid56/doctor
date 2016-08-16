@@ -98,12 +98,9 @@
                    
                 </div>
 
-                <div >
-                    <p>
-                        {!! Form::label('Chose the picture:') !!}
-                        {!! Form::file('pic') !!}
-                    </p>
-
+                <div class="form-group">
+                  <label for="image">Chose the picture</label>
+                  <input type="file" class="form-control" name="image" id="image" {{ $errors->has('image') ? 'class=has-error' : '' }} value="{{ Request::old('image') ? Request::old('image') : isset($photo) ? $photo->image : '' }}">
                 </div>
               </div>
               <!-- /.box-body -->

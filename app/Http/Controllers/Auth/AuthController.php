@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Division;
 use App\Doctor;
+use App\Photo;
 
 class AuthController extends Controller
 {
@@ -90,7 +91,9 @@ class AuthController extends Controller
     $doctor = Doctor::create([
         'name' => $data['name'],
     ]);
-
+    $photo=Photo::create([
+        'name' => $data['name'],
+    ]);
     // $doctor->user()->$user->id;
 
     return $user;
