@@ -13,8 +13,7 @@
                  <div class="col-md-12">
                     <div class="blog-item">
                         <div class="row">
-                            @foreach($district->categories as $category)
-                            @foreach($category->hospital as $hospital)  
+                            @foreach($district->hospital as $hospital)  
                                 <div class="col-xs-12 col-sm-4 blog-content">
                                 </div>
                                 
@@ -40,7 +39,6 @@
 
                                     <a class="btn btn-success readmore" href="{!! URL::route('doctor_list') !!}">Doctor List</a>
                                 </div>
-                                @endforeach 
                                 @endforeach 
                             </div>
                            

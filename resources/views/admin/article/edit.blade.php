@@ -62,6 +62,42 @@
                   <input type="number" class="form-control" name="fee" id="fee" {{ $errors->has('fee') ? 'class=has-error' : '' }} value="{{ Request::old('fee') ? Request::old('fee') : isset($doctor) ? $doctor->fee : '' }}">
                 </div>
 
+                <div class="form-group">
+                <label for="division">Division</label>
+                
+
+                  <select name="division_id">
+                  @foreach($divisions as $division)
+                    <option value="{{ $division->id }}">{{ $division->name}}</option>
+                    @endforeach
+                  </select>
+                   
+                </div>
+
+                <div class="form-group">
+                <label for="district">District</label>
+                
+
+                  <select name="district_id">
+                  @foreach($districts as $district)
+                    <option value="{{ $district->id }}">{{ $district->name}}</option>
+                    @endforeach
+                  </select>
+                   
+                </div>
+
+                <div class="form-group">
+                <label for="dcategory">Category</label>
+                
+
+                  <select name="dcategory_id">
+                  @foreach($dcategories as $dcategory)
+                    <option value="{{ $dcategory->id }}">{{ $dcategory->name}}</option>
+                    @endforeach
+                  </select>
+                   
+                </div>
+
                 <div >
                     <p>
                         {!! Form::label('Chose the picture:') !!}

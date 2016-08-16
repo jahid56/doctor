@@ -10,6 +10,7 @@ class Doctor extends Model
 		'name',
         'division_id',
         'district_id',
+        'hospital','education','fee','phone',
     ];
 
     public function district()
@@ -22,4 +23,7 @@ class Doctor extends Model
 
         return $this->belongsto('App\Division');
     }
+    public function user(){
+        return $this->belongsTo('App\User');
+     }
 }

@@ -27,7 +27,7 @@
 
               <h3 class="profile-username text-center">{{ $doctor->name }}</h3>
 
-              <p class="text-muted text-center">Software Engineer</p>
+              <p class="text-muted text-center">{{ $doctor->specialty }}</p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
@@ -134,7 +134,7 @@
 
                       <div class="timeline-body">
                             <span class="username">
-                              <p>Specialty : &nbsp {{ $profile->specialty }}</p>
+                              <p>Specialty : &nbsp {{ $doctor->specialty }}</p>
                             </span>
                       </div>
                     </div>

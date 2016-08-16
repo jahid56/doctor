@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use Image;
-
-
+use App\Division;
+use App\District;
+use App\Dcategory;
 use App\Doctor;
 use DB;
 use Auth;
@@ -28,6 +29,7 @@ class ProfileController extends Controller
 
     public function index($id)
     {
+        $divisions = Division::all();
         $profile = Auth::user();
         // $profile = User::find($profile_id);
         $doctor=Doctor::find($id);
@@ -38,6 +40,7 @@ class ProfileController extends Controller
 
         if($profile->id == $doctor->id) {
         return view('admin.article.index')
+        ->with('divisions',$divisions)
         ->with('profile',$profile)
         ->with('doctor',$doctor);
     }
@@ -50,6 +53,9 @@ class ProfileController extends Controller
      */
 
     public function getUpdate($id) {
+        $divisions = Division::all();
+        $districts = District::all();
+        $dcategories = Dcategory::all();
 
         $profile = Auth::user();
         $doctor=Doctor::find($id);
@@ -59,6 +65,9 @@ class ProfileController extends Controller
         //     return redirect()->route('blog.index')->with(['fail' => 'Post Not Found']);
         // }
         return view('admin.article.edit')
+        ->with('divisions',$divisions)
+        ->with('districts',$districts)
+        ->with('dcategories',$dcategories)
         ->with('profile',$profile)
         ->with('doctor',$doctor);
     }
@@ -68,6 +77,9 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required|max:120',
             'fee' => 'required|max:5',
+            'division_id' => '',
+            'district_id' => '',
+            'dcategory_id' => '',
             'education' => '',
             'institute' => '',
             'specialty' => '',
@@ -79,6 +91,9 @@ class ProfileController extends Controller
 
         $doctor = Doctor::find($request['id']);
         $doctor->name = $request['name'];
+        $doctor->division_id = $request['division_id'];
+        $doctor->district_id = $request['district_id'];
+        $doctor->dcategory_id = $request['dcategory_id'];
         $doctor->institute = $request['institute'];
         $doctor->education = $request['education'];
         $doctor->specialty = $request['specialty'];
@@ -96,66 +111,8 @@ class ProfileController extends Controller
         $doctor->update();
 
         return redirect()->route('profile')->with(['success' => 'Profile Successfully Updated']);
-
-        // $this->validate($request, [
-        //     'name' => 'required|max:120',
-        //     'username' => 'required|max:80'
-        //     ]);
-
-        // $credentials = $request->only(
-        //             'name', 'email'
-        //     );
-
-        //  // save users table
-        // // $profile = Auth::user();
-        // $profile = \Auth::user();
-        //     $profile->name = $credentials['name'];
-        //     $profile->username = $credentials['username'];
-        //     $profile->save();
-        //     return redirect('profile/'.$profile->id);
-
-        // // save doctor table
-        // DB::table('doctors')//change this to doctors
-        //     ->update([
-        //         'hospital'    =>  $profile->input('hospital'),
-        //         'education'       =>  $profile->input('education')
-        //     ]); 
-
-
-        // return redirect()->route('profile')->with(['success' => 'Profile Successfully Updated']);
+   
     }
-
-    // public function update(Request $request){
-    //     $this->validate($request, [
-    //         'name' => 'required|max:120',
-    //         'username' => 'required|max:80',
-    //         'email' => 'required',
-    //         'password' => 'required'
-    //         ]);
-
-    //      // save users table
-    //     $profile = Auth::user();
-    //     // $user = new App\User;
-    //     $profile->name = $request->input('name');
-    //     $profile->email = $request->input('email');
-    //     $profile->username = $request->input('username');
-    //     $profile->password = $request->input('password');
-    //     $profile->update();
-
-    //     // save doctor table
-    //     DB::table('doctor')
-    //     ->update(
-    //         'id'        =>  $profile->id,
-    //         'gender'    =>  $profile->input('hospital'),
-    //         'age'       =>  $profile->input('education')
-    //     );  
-
-    //     // set a flush message and redirect()->back();
-    //     return TRUE;
-
-    //     return redirect()->route('profile')->with(['success' => 'Profile Successfully Updated']);
-    // }
-
 
 
     public function create()

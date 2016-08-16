@@ -20,7 +20,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="admin/user.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Jahid Mahmud</span>
+              <span class="hidden-xs">{{ $profile->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -28,7 +28,7 @@
                 <img src="admin/user.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Jahid Mahmud - Web Developer
+                  {{ $profile->name }}
                 </p>
               </li>
               <!-- Menu Body -->
@@ -68,7 +68,7 @@
           <img src="admin/user.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Jahid Mahmud</p>
+          <p>{{ $profile->name }}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

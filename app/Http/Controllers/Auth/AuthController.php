@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Division;
+use App\Doctor;
 
 class AuthController extends Controller
 {
@@ -79,11 +80,20 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+    $doctor = Doctor::create([
+        'name' => $data['name'],
+    ]);
+
+    // $doctor->user()->$user->id;
+
+    return $user;
+
     }
 }
