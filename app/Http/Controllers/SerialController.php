@@ -6,33 +6,19 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Auth;
-
-class AdminController extends Controller
+use App\Serial;
+use App\Division;
+use App\Doctor;
+class SerialController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
-
-
-
     public function index()
     {
-
-        /*$chartData = $logger->getLogPercent();*/
-
-        // $chartData = array();
-
-        $profile = Auth::user();
-        
-        // if(!$profile) {
-        //     return redirect()->route('logout')->with(['fail' => 'Profile Not Found']);
-        // }
-        return view('admin.pages.main', compact('profile'));
+        //
     }
 
     /**
@@ -40,6 +26,43 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function getSerial($id)
+    {
+
+        $divisions = Division::all();
+        $doctor=Doctor::find($id);
+    //     return view('users.contact-us',['divisions' => $divisions]);
+        return view('users.serial')
+        ->with('divisions',$divisions)
+        ->with('doctor',$doctor);
+    }
+
+    public function postSerial(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:55',
+            'email' => 'required|email|max:55',
+            'mobile' => 'required|max:11',
+            'date' => 'required',
+            'problem' => 'required|min:15',
+        ]);
+
+        $message= New Serial();
+        $message->email=$request['email'];
+        $message->name=$request['name'];
+        $message->mobile=$request['mobile'];
+        $message->date=$request['date'];
+        $message->problem=$request['problem'];
+        $message->save();
+
+        $request->session()->flash('alert-success', 'Your Serial has been recorded!');
+
+        return redirect()->route('serial');
+    }
+
+
     public function create()
     {
         //

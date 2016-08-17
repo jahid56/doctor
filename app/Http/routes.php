@@ -31,6 +31,10 @@ Route::get('/districts/doctor/{id}', array('as' =>'doctor' ,'uses' => 'UserContr
 
 Route::get('/districts/doctor/doctor_info/{id}', array('as' =>'doctor_info' ,'uses' => 'UserController@doctor_info'));
 
+Route::get('/districts/doctor/doctor_info/{id}/serial', array('as' =>'serial' ,'uses' => 'SerialController@getSerial'));
+
+Route::post('/districts/doctor/doctor_info/{id}/serial', array('as' =>'serial.send' ,'uses' => 'SerialController@postSerial'));
+
 Route::get('/contact', array('as' =>'contact' ,'uses' => 'ContactController@getContactIndex'));
 
 Route::post('/contact', array('as' =>'contact.send' ,'uses' => 'ContactController@postSendMessage'));
@@ -59,15 +63,6 @@ Route::get('password/reset/{token}', [
         'uses' => 'Auth\PasswordController@postReset'
     ]);
 
-// Route::get('password/reset/{token}', ['as' => 'reset', function ($token) {
-//     return view('auth.reset')->with($token);
-// }]);
-// //Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-// Route::post('password/reset',array('as' =>'reset' ,'uses' => 'Auth\PasswordController@postReset'));
-
-
-
-// Route::get('admin', ['middleware' => 'admin', 'uses' => 'AdminController@index']);
 
 Route::group([
     'middleware' => 'auth'
@@ -92,10 +87,6 @@ Route::group([
                     'as' => 'update'
             ]);
 
-    //     Route::get('/profile/{profile_id}',[
-    //     'as' => 'profile',
-    //     'uses' => 'ProfileController@index'
-    // ]);
 
         Route::get('/mail',[
         'as' => 'mail',
@@ -103,31 +94,5 @@ Route::group([
     ]);
 
     });
-// Route::get('/home', ['middleware' => 'auth',
-//         'as' => 'admin',
-//         'uses' => 'AdminController@index'
-//     ]);
-
-// Route::get('/profile', ['middleware' => 'auth',
-//         'as' => 'profile',
-//         'uses' => 'ProfileController@index'
-//     ]);
-
-
-// Route::get('/profile/post/{post_id}&{end}', [
-//             'uses' => 'ProfileController@getProfile',
-//             'as' => 'admin.profile'
-//     ]);
-
-// // blog
-//         Route::resource('profile', 'ProfileController', array('before' => 'hasAccess:profile'));
-//         Route::get('profile/{id}/delete', array('as' => 'admin.profile.delete',
-//                                                 'uses' => 'ProfileController@confirmDestroy', ))->where('id', '\d+');
-
-
-// Route::get('/home', [
-//         'as' => 'admin',
-//         'uses' => 'AdminController@index'
-//     ]);
 
 

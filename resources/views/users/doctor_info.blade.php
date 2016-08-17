@@ -36,7 +36,7 @@
                                         <li><a href="#"><i class="fa fa-skype"></i></a></li>
                                     </ul>
                                 <h5>Fee : {{ $doctor->fee }}</h5>
-                                <a class="btn btn-success" href="#">Give Your Serial</a>
+                                <a class="btn btn-success" href="{!! URL::route('serial', $doctor['id']) !!}">Give Your Serial</a>
                             </div>
                         @endforeach
                         </div>

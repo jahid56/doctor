@@ -95,6 +95,12 @@ Breadcrumbs::register('doctor_info', function($breadcrumbs)
     $breadcrumbs->push('Doctor Info', route('doctor_info'));
 });
 
+Breadcrumbs::register('serial', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Serial', route('serial'));
+});
+
 Breadcrumbs::register('profile', function($breadcrumbs)
 {
     $breadcrumbs->parent('admin');

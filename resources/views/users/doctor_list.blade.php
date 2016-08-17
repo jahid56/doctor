@@ -13,6 +13,7 @@
                  <div class="col-md-12">
                     <div class="blog-item">
                         <div class="row">
+                        
                         @foreach($doctors as $doctor)        
                             <div class="col-xs-12 col-sm-4 blog-content">
                                 <a href="#"><img class="img-responsive img-blog" src="{{ asset('uploads/logo/' . $photo->image) }}" width="100%" alt="" /></a>
@@ -36,19 +37,25 @@
                                         <li><a href="#"><i class="fa fa-skype"></i></a></li>
                                     </ul>
                                 <h5>Fee : {{ $doctor->fee }}</h5>
-                                <a class="btn btn-success" href="#">Give Your Serial</a>
+                                <a class="btn btn-success" href="{!! URL::route('serial', $doctor['id']) !!}">Give Your Serial</a>
                             </div>
                         @endforeach
                         </div>
 
                     </div><!--/.blog-item-->
                         
-                    @if($doctors->lastPage() > 1)
                     
+
+                    @if($doctors->lastPage() > 1)
                         <ul class="pagination pagination-lg">
-                        {!! $doctors->render() !!}
-                            
-                        </ul><!--/.pagination-->
+                            @if($doctors->currentPage() !== 1)
+                                <li><a href="{{ $doctors->previousPageUrl() }}"><i class="fa fa-caret-left">Previous Page</i></a></li>
+                            @endif
+
+                            @if($doctors->currentPage() !== $doctors->lastPage())
+                                <li><a href="{{ $doctors->nextPageUrl() }}"><i class="fa fa-caret-right">Next Page</i></a></li>
+                            @endif
+                        </ul>
                     @endif
                 </div><!--/.col-md-8-->
 

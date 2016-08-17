@@ -94,6 +94,7 @@ class UserController extends Controller
          $district=District::find($id); 
 
          $categories=Category::all();
+         $hospital=Hospital::find($id);
         
         // $districts=District::where('division_id', '=', $divisions->id)->get();
         
@@ -105,6 +106,7 @@ class UserController extends Controller
                     ->with('divisions',  $divisions)
                     ->with('division', $division)
                     ->with('district', $district)
+                    ->with('hospital',$hospital)
                     ->with('categories',$categories);
     }
 
@@ -119,6 +121,9 @@ class UserController extends Controller
          $hospital=Hospital::find($id);
          // $hospitals =$hospital->paginate(5);
          $hospitals = Hospital::where('district_id',$id)->paginate(2);
+
+         $doctor=Doctor::find($id);
+         $doctors =$doctor->paginate(1);
         
         // $districts=District::where('division_id', '=', $divisions->id)->get();
         
@@ -131,7 +136,10 @@ class UserController extends Controller
                     ->with('division', $division)
                     ->with('district', $district)
                     ->with('category',$category)
-                    ->with('hospitals',$hospitals);
+                    ->with('hospital',$hospital)
+                    ->with('hospitals',$hospitals)
+                    ->with('doctor',$doctor)
+                    ->with('doctors',$doctors);
     }
     
     public function doctor_list($id)
@@ -145,6 +153,8 @@ class UserController extends Controller
          $category=Category::find($id);
          $doctor=Doctor::find($id);
          $doctors =$doctor->paginate(1);
+         $photo = Photo::find($id);
+
         
         // $districts=District::where('division_id', '=', $divisions->id)->get();
         
@@ -159,6 +169,7 @@ class UserController extends Controller
                     ->with('categories',$categories)
                     ->with('category',$category)
                     ->with('doctor',$doctor)
+                    ->with('photo',$photo)
                     ->with('doctors',$doctors);
     }
     public function doctor($id)
@@ -169,7 +180,9 @@ class UserController extends Controller
         $division=Division::find($id);
         $district=District::find($id); 
 
-        $dcategories=Dcategory::all(); 
+        $dcategories=Dcategory::all();
+        $doctor=Doctor::find($id);
+        $doctors =$doctor->paginate(1);
         
         // $districts=District::where('division_id', '=', $divisions->id)->get();
         
@@ -181,6 +194,7 @@ class UserController extends Controller
                     ->with('divisions',  $divisions)
                     ->with('division', $division)
                     ->with('district', $district)
+                    ->with('doctor',$doctor)
                     ->with('dcategories',$dcategories);
     }
 
@@ -218,72 +232,4 @@ class UserController extends Controller
                     ->with('photo',$photo);
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        // 
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -37,7 +37,7 @@
                                         </ul>
                                         <br><br>
 
-                                    <a class="btn btn-success readmore" href="{!! URL::route('doctor_list') !!}">Doctor List</a>
+                                    <a class="btn btn-success readmore" href="{!! URL::route('doctor_list', $doctor['id']) !!}">Doctor List</a>
                                 </div>
                                 @endforeach 
                             </div>

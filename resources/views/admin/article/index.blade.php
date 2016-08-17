@@ -54,7 +54,7 @@
               <li class="active"><a href="#activity" data-toggle="tab">Personal</a></li>
               <li><a href="#timeline" data-toggle="tab">Education</a></li>
               <li><a href="#settings" data-toggle="tab">Employment</a></li>
-              <li><a href="{{ route('edit') }}">Update</a></li>
+              <li><a href="{{ route('edit', $doctor['id']) }}">Update</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
