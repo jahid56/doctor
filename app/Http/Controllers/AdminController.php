@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\Doctor;
 
 class AdminController extends Controller
 {
@@ -28,6 +29,7 @@ class AdminController extends Controller
         // $chartData = array();
 
         $profile = Auth::user();
+        // $doctor=Doctor::find($id);
         
         // if(!$profile) {
         //     return redirect()->route('logout')->with(['fail' => 'Profile Not Found']);

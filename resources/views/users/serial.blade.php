@@ -1,4 +1,4 @@
-<?php $active="contact"; ?>
+<?php $active="doctor"; ?>
 @extends('layouts.dashboard')
 @section('content') 
 <section id="contact-page">
@@ -19,10 +19,11 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Drop Your Message</h3>
                     </div>
-                    <form action="{{ route('serial.send') }}" method="post" id="contact-form">
+                    <form action="{!! URL::route('serial.send', $doctor['id']) !!}" method="post" id="contact-form">
                     <div class="panel-body">
                        
                         {!! csrf_field() !!}
+                           {!!Form::hidden('doctor_id', $doctor->id)!!}
                             <fieldset>
                                 <div class="form-group">
                                     <label>Name *</label>

@@ -95,6 +95,18 @@ Breadcrumbs::register('doctor_info', function($breadcrumbs)
     $breadcrumbs->push('Doctor Info', route('doctor_info'));
 });
 
+Breadcrumbs::register('serial.send', function($breadcrumbs)
+{
+    $breadcrumbs->parent('doctor');
+    $breadcrumbs->push('Serial', route('serial.send'));
+});
+
+Breadcrumbs::register('search', function($breadcrumbs)
+{
+    $breadcrumbs->parent('doctor');
+    $breadcrumbs->push('Search', route('search'));
+});
+
 Breadcrumbs::register('serial', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
@@ -106,10 +118,33 @@ Breadcrumbs::register('profile', function($breadcrumbs)
     $breadcrumbs->parent('admin');
     $breadcrumbs->push('Profile', route('profile'));
 });
+
+Breadcrumbs::register('serial', function($breadcrumbs)
+{
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Profile', route('profile'));
+});
 Breadcrumbs::register('edit', function($breadcrumbs)
 {
     $breadcrumbs->parent('profile');
     $breadcrumbs->push('edit', route('edit'));
+});
+Breadcrumbs::register('seriallist', function($breadcrumbs)
+{
+    $breadcrumbs->parent('profile');
+    $breadcrumbs->push('Serial', route('seriallist'));
+});
+
+Breadcrumbs::register('serialinfo', function($breadcrumbs)
+{
+    $breadcrumbs->parent('profile');
+    $breadcrumbs->push('Serial', route('serialinfo'));
+});
+
+Breadcrumbs::register('patientinfo', function($breadcrumbs)
+{
+    $breadcrumbs->parent('profile');
+    $breadcrumbs->push('Serial', route('patientinfo'));
 });
 
 Breadcrumbs::register('mail', function($breadcrumbs)

@@ -23,11 +23,11 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle"  src="{{ asset('uploads/logo/' . $photo->image) }}" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle"  src="{{ asset('uploads/logo/' . $profile->image) }}" alt="User profile picture">
 
-              <h3 class="profile-username text-center">{{ $doctor->name }}</h3>
+              <h3 class="profile-username text-center">{{ $profile->name }}</h3>
 
-              <p class="text-muted text-center">{{ $doctor->specialty }}</p>
+              <p class="text-muted text-center">{{ $profile->specialty }}</p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
@@ -54,7 +54,7 @@
               <li class="active"><a href="#activity" data-toggle="tab">Personal</a></li>
               <li><a href="#timeline" data-toggle="tab">Education</a></li>
               <li><a href="#settings" data-toggle="tab">Employment</a></li>
-              <li><a href="{{ route('edit', $doctor['id']) }}">Update</a></li>
+              <li><a href="{{ route('edit', $profile['id']) }}">Update</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
@@ -62,7 +62,7 @@
                 <div class="post">
                   <div class="user-block">
                         <span class="username">
-                          <p>Name : &nbsp {{ $doctor->name }}</p>
+                          <p>Name : &nbsp {{ $profile->name }}</p>
                         </span>
                     
                   </div>
@@ -93,7 +93,7 @@
                 <div class="post clearfix">
                   <div class="user-block">
                         <span class="username">
-                          <p>Mobile No : &nbsp {{ $doctor->phone }}</p>
+                          <p>Mobile No : &nbsp {{ $profile->phone }}</p>
                         </span>
                   </div>
                 </div>
@@ -104,13 +104,15 @@
                 <!-- The timeline -->
                 <ul class="timeline timeline-inverse">
                   <!-- timeline item -->
+                  
+
                   <li>
 
                     <div class="timeline-item">
 
                       <div class="timeline-body">
                             <span class="username">
-                              <p>Institute Name : &nbsp {{ $doctor->institute }}</p>
+                              <p>Degree : &nbsp {{ $profile->education }}</p>
                             </span>
                       </div>
                     </div>
@@ -122,19 +124,7 @@
 
                       <div class="timeline-body">
                             <span class="username">
-                              <p>Degree : &nbsp {{ $doctor->education }}</p>
-                            </span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-
-                    <div class="timeline-item">
-
-                      <div class="timeline-body">
-                            <span class="username">
-                              <p>Specialty : &nbsp {{ $doctor->specialty }}</p>
+                              <p>Specialty : &nbsp {{ $profile->specialty }}</p>
                             </span>
                       </div>
                     </div>
@@ -150,7 +140,7 @@
                 <div class="post">
                   <div class="user-block">
                         <span class="username">
-                          <p>Hospital Name : &nbsp {{$doctor->hospital }}</p>
+                          <p>Hospital Name : &nbsp {{$profile->institute }}</p>
                         </span>
                     
                   </div>
@@ -159,7 +149,7 @@
                 <div class="post">
                   <div class="user-block">
                         <span class="username">
-                          <p>Visiting Time : &nbsp {{ $doctor->time }}</p>
+                          <p>Visiting Time : &nbsp {{ $profile->time }}</p>
                         </span>
                     
                   </div>
@@ -167,7 +157,7 @@
                 <div class="post">
                   <div class="user-block">
                         <span class="username">
-                          <p>Fee : &nbsp {{ $doctor->fee }}</p>
+                          <p>Fee : &nbsp {{ $profile->fee }}</p>
                         </span>
                     
                   </div>

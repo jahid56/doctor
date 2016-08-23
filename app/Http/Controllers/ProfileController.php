@@ -18,6 +18,8 @@ use App\District;
 use App\Dcategory;
 use App\Doctor;
 use App\Photo;
+use App\Serial;
+use App\User;
 use DB;
 use Auth;
 class ProfileController extends Controller
@@ -28,25 +30,36 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index($id)
+    public function index()
     {
         $divisions = Division::all();
         $profile = Auth::user();
-        // $profile = User::find($profile_id);
-        $doctor=Doctor::find($id);
-        $photo = Photo::find($id);
 
         // if(!$profile) {
         //     return redirect()->route('logout')->with(['fail' => 'Profile Not Found']);
         // }
 
-        if($profile->id == $doctor->id) {
+        
         return view('admin.article.index')
         ->with('divisions',$divisions)
-        ->with('profile',$profile)
-        ->with('doctor',$doctor)
-        ->with('photo',$photo);
+        ->with('profile',$profile);
+    
     }
+
+    public function seriallist()
+    {
+        $divisions = Division::all();
+        $profile = Auth::user();
+
+        // if(!$profile) {
+        //     return redirect()->route('logout')->with(['fail' => 'Profile Not Found']);
+        // }
+
+        
+        return view('admin.article.serial')
+        ->with('divisions',$divisions)
+        ->with('profile',$profile);
+    
     }
 
     /**
@@ -55,14 +68,82 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function getUpdate($id) {
+
+
+    public function getSerial()
+    {
+        $divisions = Division::all();
+        $profile = Auth::user();
+		$serial=Serial::all();
+
+        // if(!$profile) {
+        //     return redirect()->route('logout')->with(['fail' => 'Profile Not Found']);
+        // }
+
+
+       
+        return view('admin.article.new')
+        ->with('divisions',$divisions)
+		->with('profile',$profile)
+		->with('serial',$serial);
+  
+    }
+
+    public function getSerialInfo($id)
+    {
+        $divisions = Division::all();
+        $profile = Auth::user();
+        $serials=Serial::all();
+        $serial=Serial::find($id);
+
+        // if(!$profile) {
+        //     return redirect()->route('logout')->with(['fail' => 'Profile Not Found']);
+        // }
+
+
+       $doctors = Serial::where('doctor_id',$id)->get();
+        return view('admin.article.serial')
+        ->with('divisions',$divisions)
+        ->with('profile',$profile)
+		->with('serials',$serials)
+		->with('serial',$serial)
+		->with('doctors',$doctors);
+  
+    }
+	
+	
+	public function getPatientInfo($id)
+    {
+        $divisions = Division::all();
+        $profile = Auth::user();
+        $serials=Serial::all();
+        $serial=Serial::find($id);
+
+        // if(!$profile) {
+        //     return redirect()->route('logout')->with(['fail' => 'Profile Not Found']);
+        // }
+
+
+       $doctors = Serial::where('doctor_id',$id)->get();
+        return view('admin.article.patient')
+        ->with('divisions',$divisions)
+        ->with('profile',$profile)
+		->with('serials',$serials)
+		->with('serial',$serial)
+		->with('doctors',$doctors);
+  
+    }
+  
+
+
+
+
+    public function getUpdate() {
         $divisions = Division::all();
         $districts = District::all();
         $dcategories = Dcategory::all();
-
         $profile = Auth::user();
-        $doctor=Doctor::find($id);
-        $photo = Photo::find($id);
+        // $photo = Photo::find($id);
 
 
         // $post = Post::find($post_id);
@@ -73,9 +154,7 @@ class ProfileController extends Controller
         ->with('divisions',$divisions)
         ->with('districts',$districts)
         ->with('dcategories',$dcategories)
-        ->with('profile',$profile)
-        ->with('doctor',$doctor)
-        ->with('photo',$photo);
+        ->with('profile',$profile);
     }
 
     public function postUpdate(Request $request ) {
@@ -94,8 +173,9 @@ class ProfileController extends Controller
             'phone' => '',
             'image' =>''            
             ]);
-
-        $doctor = Doctor::find($request['id']);
+            
+            
+        $doctor = Auth::user();
         $doctor->name = $request['name'];
         $doctor->division_id = $request['division_id'];
         $doctor->district_id = $request['district_id'];
@@ -108,15 +188,17 @@ class ProfileController extends Controller
         $doctor->time = $request['time'];
         $doctor->fee = $request['fee'];
 
-        $photo = Photo::find($request['id']);
+        // $photo = Photo::find($request['id']);
         $logo=$request->file('image');
-        $upload='uploads/logo';
-        $filename=$logo->getClientOriginalName();
-        $success=$logo->move($upload,$filename);
-        if($success) {
-            $photo->image = $filename;
-            $photo->update();
+        if(!empty($logo)) {
+            $upload='uploads/logo';
+            $filename=$logo->getClientOriginalName();
+            $success=$logo->move($upload,$filename);
+            
+            $doctor->image = $filename;
         }
+        
+        
         
         // $file = Input::file('pic');
         // $img = Image::make($request->file('pic')->getRealPath());

@@ -35,6 +35,8 @@ Route::get('/districts/doctor/doctor_info/{id}/serial', array('as' =>'serial' ,'
 
 Route::post('/districts/doctor/doctor_info/{id}/serial', array('as' =>'serial.send' ,'uses' => 'SerialController@postSerial'));
 
+Route::get('/search', array('as' =>'search' ,'uses' => 'UserController@search'));
+
 Route::get('/contact', array('as' =>'contact' ,'uses' => 'ContactController@getContactIndex'));
 
 Route::post('/contact', array('as' =>'contact.send' ,'uses' => 'ContactController@postSendMessage'));
@@ -74,7 +76,8 @@ Route::group([
         'uses' => 'AdminController@index'
     ]);
 
-        Route::get('/profile/{id}', array('as' =>'profile' ,'uses' => 'ProfileController@index'));
+
+        Route::get('/profile', array('as' =>'profile' ,'uses' => 'ProfileController@index'));
         //Route::get('/update', array('as' =>'update' ,'uses' => 'ProfileController@postUpdate'));
 
         Route::get('/profile/{profile_id}/edit', [
@@ -87,11 +90,28 @@ Route::group([
                     'as' => 'update'
             ]);
 
+        Route::get('/profile/serial', [
+        'as' => 'seriallist',
+        'uses' => 'ProfileController@getSerial'
+    ]);
+        Route::get('/profile/{profile_id}/serial', [
+        'as' => 'serialinfo',
+        'uses' => 'ProfileController@getSerialInfo'
+    ]);
+
+        Route::get('/profile/{profile_id}/patient', [
+        'as' => 'patientinfo',
+        'uses' => 'ProfileController@getPatientInfo'
+    ]);
+
 
         Route::get('/mail',[
         'as' => 'mail',
         'uses' => 'MailController@index'
     ]);
+        
+
+        
 
     });
 

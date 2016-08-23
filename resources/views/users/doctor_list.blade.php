@@ -16,7 +16,7 @@
                         
                         @foreach($doctors as $doctor)        
                             <div class="col-xs-12 col-sm-4 blog-content">
-                                <a href="#"><img class="img-responsive img-blog" src="{{ asset('uploads/logo/' . $photo->image) }}" width="100%" alt="" /></a>
+                                <a href="#"><img class="img-responsive img-blog" src="{{ asset('uploads/logo/' . $doctor->image) }}" width="100%" alt="" /></a>
                             </div>
                             
                                 <div class="col-xs-12 col-sm-6 blog-content">

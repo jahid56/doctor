@@ -14,7 +14,7 @@ class CreateHospitalsTable extends Migration
     {
         Schema::create('hospitals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->integer('division_id');
             $table->integer('category_id');
             $table->integer('district_id');
@@ -23,7 +23,7 @@ class CreateHospitalsTable extends Migration
             $table->integer('activities');
             $table->integer('beds');
             $table->integer('doctors');
-            $table->integer('phone')->unique();
+            $table->integer('phone');
             $table->timestamps();
         });
     }

@@ -78,13 +78,8 @@
             <i class="fa fa-user"></i> <span>Profile</span>
           </a>
         </li>
-		<li>
-          <a href="#">
-            <i class="fa fa-users"></i> <span>Patient Details</span>
-          </a>
-        </li>
-		<li>
-          <a href="#">
+    <li <?php if($active == 'serial') {echo 'class="active"';} ?>>
+          <a href="{!! URL::route('seriallist') !!}">
             <i class="fa fa-user-md"></i> <span>Appointment List</span>
           </a>
         </li>
@@ -93,7 +88,7 @@
             <i class="fa fa-envelope"></i> <span>Mailbox</span>
           </a>
         </li>
-		
+    
         
         
       </ul>

@@ -44,6 +44,7 @@ class AuthController extends Controller
 
     public function getLogin() {
         $divisions = Division::all();
+        
 
         return view('auth.login',['divisions' => $divisions]);
 

@@ -3,6 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 col-xs-12">
+				
 				   <div class="social">
 						<ul class="social-share">
 							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -11,10 +12,16 @@
 							<li><a href="#"><i class="fa fa-skype"></i></a></li>
 						</ul>
 						<div class="search">
-							<form role="form">
-								<input type="text" class="search-form" autocomplete="off" placeholder="Search">
-								<i class="fa fa-search"></i>
-							</form>
+						 
+							{!! Form::open(['route' => 'search', 'method'=> 'GET']) !!}
+							
+								<input type="text" class="search-form" name="name" autocomplete="off" placeholder="Search">
+								<input type="submit" value="Search">
+								
+									<i class="fa fa-search"></i>
+								
+							{!! Form::close() !!}
+							</div>
 					   </div>
 				   </div>
 				</div>

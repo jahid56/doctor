@@ -15,7 +15,7 @@
                             <div class="feature-wrap">
                                 
                                 <h2>{{ $district->name }}</h2>
-                                <h3><a  href="{!! URL::route('hospital', $district['id']) !!}"> View Details</a></h3>
+                                <h3><a  href="{!! URL::route('hospital_info', $district['id']) !!}"> View Details</a></h3>
 
                             </div>
                         </div><!--/.col-md-4-->

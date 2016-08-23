@@ -44,4 +44,22 @@ class User extends Model implements AuthenticatableContract,
      public function photo(){
         return $this->hasOne('App\Photo');
      }
+
+     public function district()
+    {
+
+        return $this->belongsto('App\District');
+    }
+    public function division()
+    {
+
+        return $this->belongsto('App\Division');
+    }
+    public function user(){
+        return $this->belongsTo('App\User');
+     }
+
+     public function serial(){
+        return $this->hasMany('App\Serial');
+     }
 }

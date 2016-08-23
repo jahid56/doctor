@@ -21,7 +21,7 @@
                                 <div class="col-xs-12 col-sm-6 blog-content">
                                     <h2><a href="#">{{ $doctor->name }}</a></h2>
                                     <h5>Education : {{ $doctor->education }}</h5> 
-                                    <h5>Hospital : {{ $doctor->institute }}</h5>
+                                    <h5>Hospital : {{ $doctor->hospital }}</h5>
                                     <h5>Fee : {{ $doctor->fee }}</h5>
                                     <h5>Phone No : {{ $doctor->phone }}</h5>
                                     
@@ -36,21 +36,12 @@
                                         <li><a href="#"><i class="fa fa-skype"></i></a></li>
                                     </ul>
                                 <h5>Fee : {{ $doctor->fee }}</h5>
-                                <h5> Visiting Time :<br> {{ $doctor->time }}</h5>
                                 <a class="btn btn-success" href="{!! URL::route('serial', $doctor['id']) !!}">Give Your Serial</a>
                             </div>
                         @endforeach
                         </div>
 
                     </div><!--/.blog-item-->
-                        
-                    @if($doctors->lastPage() > 1)
-                    
-                        <ul class="pagination pagination-lg">
-                        {!! $doctors->render() !!}
-                            
-                        </ul><!--/.pagination-->
-                    @endif
                 </div><!--/.col-md-8-->
 
             </div><!--/.row-->

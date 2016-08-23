@@ -13,6 +13,7 @@
                  <div class="col-md-12">
                     <div class="blog-item">
                         <div class="row">
+                        
                             @foreach($hospitals as $hospital)  
                                 <div class="col-xs-12 col-sm-4 blog-content">
                                 </div>
@@ -37,19 +38,14 @@
                                         </ul>
                                         <br><br>
 
-                                    <a class="btn btn-success readmore" href="{!! URL::route('doctor_list', $doctor['id']) !!}">Doctor List</a>
+                                    <!-- <a class="btn btn-success readmore" href="{!! URL::route('doctor_list', $doctor['id']) !!}">Doctor List</a> -->
                                 </div>
                                 @endforeach 
+                                
                             </div>
                            
                     </div><!--/.blog-item-->
-                    @if($hospitals->lastPage() > 1)
-                    
-                        <ul class="pagination pagination-lg">
-                        {!! $hospitals->render() !!}
-                            
-                        </ul><!--/.pagination-->
-                    @endif
+                   
                 </div><!--/.col-md-8-->
 
             </div><!--/.row-->

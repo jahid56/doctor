@@ -14,6 +14,7 @@ use App\Dcategory;
 use App\Hospital;
 use App\Doctor;
 use App\Photo;
+use App\User;
 class UserController extends Controller
 {
     /**
@@ -95,6 +96,7 @@ class UserController extends Controller
 
          $categories=Category::all();
          $hospital=Hospital::find($id);
+
         
         // $districts=District::where('division_id', '=', $divisions->id)->get();
         
@@ -116,15 +118,16 @@ class UserController extends Controller
         $divisions = Division::all();
          $division=Division::find($id); 
          
-         $district=District::find($id); 
+         $district=District::find($id);
+         $categories=Category::all(); 
          $category=Category::find($id);
          $hospital=Hospital::find($id);
          // $hospitals =$hospital->paginate(5);
          $hospitals = Hospital::where('district_id',$id)->paginate(2);
+         
 
-         $doctor=Doctor::find($id);
-         $doctors =$doctor->paginate(1);
-        
+         $doctor=User::find($id);
+         $doctors = User::where('district_id',$id)->paginate(1);
         // $districts=District::where('division_id', '=', $divisions->id)->get();
         
         // if (!$district)
@@ -135,6 +138,7 @@ class UserController extends Controller
                     ->with('divisions',  $divisions)
                     ->with('division', $division)
                     ->with('district', $district)
+                    ->with('categories',$categories)
                     ->with('category',$category)
                     ->with('hospital',$hospital)
                     ->with('hospitals',$hospitals)
@@ -151,9 +155,13 @@ class UserController extends Controller
 
          $categories=Category::all();
          $category=Category::find($id);
-         $doctor=Doctor::find($id);
-         $doctors =$doctor->paginate(1);
-         $photo = Photo::find($id);
+
+         $dcategories=Dcategory::all();
+         $dcategory=Dcategory::find($id);
+         
+         $doctor=User::find($id);
+         $doctors =User::where('id',$id)->paginate(1);
+         // $photo = Photo::find($id);
 
         
         // $districts=District::where('division_id', '=', $divisions->id)->get();
@@ -168,8 +176,10 @@ class UserController extends Controller
                     ->with('district', $district)
                     ->with('categories',$categories)
                     ->with('category',$category)
+                    ->with('dcategories',$dcategories)
+                    ->with('dcategory',$dcategory)
                     ->with('doctor',$doctor)
-                    ->with('photo',$photo)
+                    // ->with('photo',$photo)
                     ->with('doctors',$doctors);
     }
     public function doctor($id)
@@ -181,8 +191,11 @@ class UserController extends Controller
         $district=District::find($id); 
 
         $dcategories=Dcategory::all();
-        $doctor=Doctor::find($id);
-        $doctors =$doctor->paginate(1);
+        $doctor=User::where('dcategory_id',$id);
+
+        // $hospitals = Hospital::where('category_id',$id)->paginate(2);
+
+        $doctors =User::where('dcategory_id',$id)->paginate(1);
         
         // $districts=District::where('division_id', '=', $divisions->id)->get();
         
@@ -195,6 +208,7 @@ class UserController extends Controller
                     ->with('division', $division)
                     ->with('district', $district)
                     ->with('doctor',$doctor)
+                    ->with('doctors',$doctors)
                     ->with('dcategories',$dcategories);
     }
 
@@ -208,19 +222,9 @@ class UserController extends Controller
          $dcategories=Dcategory::all();
          $dcategory=Dcategory::find($id);
          
-         $doctor=Doctor::find($id);
-         $doctors =$doctor->paginate(1);
-         $photo = Photo::find($id);
+         $doctor=User::find($id);
+         $doctors =User::where('district_id',$id)->paginate(1);
          
-         //$hospitals = Hospital::where('district_id',$id)->paginate(2);
-
-        
-        // $districts=District::where('division_id', '=', $divisions->id)->get();
-        
-        // if (!$district)
-        // {
-        //     throw new NotFoundHttpException;
-        // }
         return view('users.doctor_info')
                     ->with('divisions',  $divisions)
                     ->with('division', $division)
@@ -228,8 +232,33 @@ class UserController extends Controller
                     ->with('dcategories',$dcategories)
                     ->with('dcategory',$dcategory)
                     ->with('doctors',$doctors)
-                    ->with('doctor',$doctor)
-                    ->with('photo',$photo);
+                    ->with('doctor',$doctor);
     }
+
+    public function search(Request $req)
+    {
+
+        $divisions = Division::all();
+    //     $name = $req->input('search');
+    //     if(null !== $name)
+    //         {
+    //            $doctors = Doctor::where('name', 'LIKE', '%' . $name .'%')->paginate(10);
+    //           return view('users.index')
+    //                    ->with('divisions',$divisions)
+    //                    ->with('doctors',$doctors);
+    //                }
+    // //         }else{
+    // //           return redirect()->back();
+    // //          }
+        // $doctors = Doctor::orderBy('name');
+        $name = $req->input('name');
+
+        $doctors = User::where('name', 'LIKE', '%' . $name . '%')->get();
+       
+       return view('users.search')
+                   ->with('divisions',$divisions)
+                   ->with('doctors',$doctors);
+
+     }
 
 }

@@ -30,36 +30,36 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" name="name" id="name" {{ $errors->has('name') ? 'class=has-error' : '' }} value="{{ Request::old('name') ? Request::old('name') : isset($doctor) ? $doctor->name : '' }}">
+                  <input type="text" class="form-control" name="name" id="name" {{ $errors->has('name') ? 'class=has-error' : '' }} value="{{ Request::old('name') ? Request::old('name') : isset($profile) ? $profile->name : '' }}">
                 </div>
                 <div class="form-group">
-                  <label for="institute">Institute Name</label>
-                  <input type="text" class="form-control" name="institute" id="institute" {{ $errors->has('institute') ? 'class=has-error' : '' }} value="{{ Request::old('institute') ? Request::old('institute') : isset($doctor) ? $doctor->institute : '' }}">
+                  <label for="institute">Hospital Name</label>
+                  <input type="text" class="form-control" name="institute" id="institute" {{ $errors->has('institute') ? 'class=has-error' : '' }} value="{{ Request::old('institute') ? Request::old('institute') : isset($profile) ? $profile->institute : '' }}">
                 </div>
 
                 <div class="form-group">
                   <label for="education">Degree</label>
-                  <input type="text" class="form-control" name="education" id="education" {{ $errors->has('education') ? 'class=has-error' : '' }} value="{{ Request::old('education') ? Request::old('education') : isset($doctor) ? $doctor->education : '' }}">
+                  <input type="text" class="form-control" name="education" id="education" {{ $errors->has('education') ? 'class=has-error' : '' }} value="{{ Request::old('education') ? Request::old('education') : isset($profile) ? $profile->education : '' }}">
                 </div>
 
                 <div class="form-group">
                   <label for="specialty">Specialty</label>
-                  <input type="text" class="form-control" name="specialty" id="specialty" {{ $errors->has('specialty') ? 'class=has-error' : '' }} value="{{ Request::old('specialty') ? Request::old('specialty') : isset($doctor) ? $doctor->specialty : '' }}">
+                  <input type="text" class="form-control" name="specialty" id="specialty" {{ $errors->has('specialty') ? 'class=has-error' : '' }} value="{{ Request::old('specialty') ? Request::old('specialty') : isset($profile) ? $profile->specialty : '' }}">
                 </div>
 
                 <div class="form-group">
                   <label for="phone">Mobile No.</label>
-                  <input type="number" class="form-control" name="phone" id="phone" {{ $errors->has('phone') ? 'class=has-error' : '' }} value="{{ Request::old('phone') ? Request::old('phone') : isset($doctor) ? $doctor->phone : '' }}">
+                  <input type="number" class="form-control" name="phone" id="phone" {{ $errors->has('phone') ? 'class=has-error' : '' }} value="{{ Request::old('phone') ? Request::old('phone') : isset($profile) ? $profile->phone : '' }}">
                 </div>
 
                 <div class="form-group">
                   <label for="time">Visiting Time</label>
-                  <input type="text" class="form-control" name="time" id="time" {{ $errors->has('time') ? 'class=has-error' : '' }} value="{{ Request::old('time') ? Request::old('time') : isset($doctor) ? $doctor->time : '' }}">
+                  <input type="text" class="form-control" name="time" id="time" {{ $errors->has('time') ? 'class=has-error' : '' }} value="{{ Request::old('time') ? Request::old('time') : isset($profile) ? $profile->time : '' }}">
                 </div>
 
                 <div class="form-group">
                   <label for="fee">Fee</label>
-                  <input type="number" class="form-control" name="fee" id="fee" {{ $errors->has('fee') ? 'class=has-error' : '' }} value="{{ Request::old('fee') ? Request::old('fee') : isset($doctor) ? $doctor->fee : '' }}">
+                  <input type="number" class="form-control" name="fee" id="fee" {{ $errors->has('fee') ? 'class=has-error' : '' }} value="{{ Request::old('fee') ? Request::old('fee') : isset($profile) ? $profile->fee : '' }}">
                 </div>
 
                 <div class="form-group">
@@ -108,7 +108,7 @@
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
-                <input type="hidden" name="id" value="{{ $doctor->id }}">
+                <input type="hidden" name="id" value="{{ $profile->id }}">
               </div>
             </form>
           </div>

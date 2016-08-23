@@ -26,7 +26,7 @@ class CreateDoctorsTable extends Migration
             $table->integer('fee');
             $table->integer('phone');
             $table->string('time');
-            $table->binary('pic');
+            $table->string('image');
             $table->timestamps();
         });
 

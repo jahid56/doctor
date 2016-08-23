@@ -39,7 +39,7 @@ class SerialController extends Controller
         ->with('doctor',$doctor);
     }
 
-    public function postSerial(Request $request)
+    public function postSerial($id, Request $request)
     {
         $this->validate($request, [
             'name' => 'required|max:55',
@@ -47,6 +47,7 @@ class SerialController extends Controller
             'mobile' => 'required|max:11',
             'date' => 'required',
             'problem' => 'required|min:15',
+            'doctor_id' => '',
         ]);
 
         $message= New Serial();
@@ -55,11 +56,17 @@ class SerialController extends Controller
         $message->mobile=$request['mobile'];
         $message->date=$request['date'];
         $message->problem=$request['problem'];
+        $message->doctor_id=$request['doctor_id'];
         $message->save();
+        $divisions = Division::all();
+        $doctor=Doctor::find($id);
 
         $request->session()->flash('alert-success', 'Your Serial has been recorded!');
 
-        return redirect()->route('serial');
+
+        return view('users.serial')
+        ->with('divisions',$divisions)
+        ->with('doctor',$doctor);
     }
 
 
